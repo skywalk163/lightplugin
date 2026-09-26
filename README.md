@@ -2,6 +2,22 @@
 
 用**光明语言**复刻 dsh（DeepSeek Harness）插件能力，供 lightharness 加载。
 
+**当前状态：12/12 插件复刻完成**，12 个测试文件全绿，全程未改一行 `light-merge/src/`。
+
+## 仓库与远端
+
+本目录是**独立 git 仓**（不是 monorepo 子仓），分支 `main`，三个远端同步：
+
+| 远端 | 地址 |
+|---|---|
+| gitea | http://192.168.1.5:3000/skywalk/lightplugin.git |
+| github | https://github.com/skywalk163/lightplugin.git |
+| gitcode | https://gitcode.com/skywalk163/lightplugin.git |
+
+```bash
+git push gitea main && git push github main && git push gitcode main
+```
+
 ## 为什么是"复刻"而不是"直接用"
 
 dsh 插件是 TypeScript 模块，挂真 Cordis 容器、跑在 Node 22+ 上；lightharness 是光明实现，
