@@ -1,0 +1,210 @@
+{
+  "repo": "lightplugin",
+  "description": "用光明语言复刻 dsh (DeepSeek Harness) 插件能力，供 lightharness 加载",
+  "created": "2026-09-26",
+  "dsh_source": "G:\\github\\deepseek-harness\\packages（共 60 个包）",
+  "lightharness_host": "G:\\dswork\\duan-light-merge\\lightharness",
+  "hook_contract": {
+    "module": "lightharness/src/工具.light",
+    "exports": [
+      "造工具模式(名字, 描述, 参数)",
+      "造工具定义(名字, 描述, 参数, 执行函数, 策略=\"exclusive\", 准备=空, 收尾=空)",
+      "造工具结果(内容, 是否错误, 结论=假)",
+      "校验参数(模式, 参数)",
+      "类 工具注册表"
+    ],
+    "cordis_module": "lightharness/src/toolcordis.light",
+    "cordis_exports": [
+      "绳构造注册(id, 描述, 方法, 输入字段, 输入模式, 输出模式)",
+      "绳执行查询(注册, 请求方法, 输入)",
+      "绳装配(宿主钩子)"
+    ]
+  },
+  "selection_rule": "dsh 60 个真实包 - lightharness 已复刻项 × 使用频率 × 光明可实现性",
+  "excluded_already_replicated": [
+    "待办.light",
+    "技能清单.light",
+    "网页搜索.light",
+    "计划模式.light",
+    "目标折叠.light / 目标轮驱动.light",
+    "定时.light / 重复提醒.light",
+    "反馈.light / 附件反馈.light",
+    "附件准入.light",
+    "交付.light / 交付呈现.light",
+    "语言服务器.light",
+    "凭据.light",
+    "审批.light",
+    "预设.light / 预设深化.light",
+    "真实HTTP客户端.light",
+    "网络钩子GitHub.light",
+    "office转PDF.light（偏：仅 Office→PDF）",
+    "工具_读文件 / 工具_写文件 / 工具_搜索文件 / 工具_bash / 工具_路径安全",
+    "文件系统工具 / 核心工具 / 宿主工具 / 团队工具 / 查询工具 / 时间工具 / 推理工具 / 交互工具 / 值工具"
+  ],
+  "plugins": [
+    {
+      "id": 1,
+      "name": "文档处理",
+      "dir": "插件/文档处理",
+      "dsh_package": "packages/document",
+      "priority": "P0",
+      "batch": 1,
+      "status": "done",
+      "capability": "PDF/Word/Excel/PPT → 文本/Markdown",
+      "gap": "仅 office转PDF（只做 Office→PDF），无读取与转换"
+    },
+    {
+      "id": 2,
+      "name": "网页抓取",
+      "dir": "插件/网页抓取",
+      "dsh_package": "packages/web",
+      "priority": "P0",
+      "batch": 1,
+      "status": "done",
+      "capability": "URL → 正文抽取/转 Markdown",
+      "gap": "仅 网页搜索.light，无正文抽取"
+    },
+    {
+      "id": 3,
+      "name": "异步作业轮询",
+      "dir": "插件/异步作业轮询",
+      "dsh_package": "packages/jobs",
+      "priority": "P0",
+      "batch": 1,
+      "status": "done",
+      "capability": "长任务提交/状态查询/超时/取消",
+      "gap": "完全无；是图片/视频生成的公共底座"
+    },
+    {
+      "id": 4,
+      "name": "图片生成",
+      "dir": "插件/图片生成",
+      "dsh_package": "Tool Plugin(外部 API)",
+      "priority": "P0",
+      "batch": 1,
+      "status": "done",
+      "capability": "文生图/图生图（异步作业+轮询）",
+      "gap": "完全无",
+      "depends": [
+        "异步作业轮询"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "视频生成",
+      "dir": "插件/视频生成",
+      "dsh_package": "Tool Plugin(外部 API)",
+      "priority": "P1",
+      "batch": 2,
+      "status": "done",
+      "capability": "文生视频/图生视频",
+      "gap": "完全无",
+      "depends": [
+        "异步作业轮询"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "三维生成",
+      "dir": "插件/三维生成",
+      "dsh_package": "Tool Plugin(外部 API)",
+      "priority": "P2",
+      "batch": 3,
+      "status": "done",
+      "capability": "文本 → 3D 资产",
+      "gap": "完全无",
+      "depends": [
+        "异步作业轮询"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "浏览器自动化",
+      "dir": "插件/浏览器自动化",
+      "dsh_package": "packages/browser-use",
+      "priority": "P1",
+      "batch": 2,
+      "status": "done",
+      "capability": "打开页面/点击/填表/截图/抽取",
+      "gap": "完全无"
+    },
+    {
+      "id": 8,
+      "name": "桌面屏幕操作",
+      "dir": "插件/桌面屏幕操作",
+      "dsh_package": "packages/computer-use",
+      "priority": "P1",
+      "batch": 2,
+      "status": "done",
+      "capability": "截图/鼠标/键盘控制",
+      "gap": "完全无"
+    },
+    {
+      "id": 9,
+      "name": "技能运行时",
+      "dir": "插件/技能运行时",
+      "dsh_package": "packages/skill（运行时）",
+      "priority": "P0",
+      "batch": 1,
+      "status": "done",
+      "capability": "SkillProvider{name,list,get} + 渐进加载 + 执行",
+      "gap": "仅静态 技能清单.light，缺运行时"
+    },
+    {
+      "id": 10,
+      "name": "身份人格装配",
+      "dir": "插件/身份人格装配",
+      "dsh_package": "packages/identity",
+      "priority": "P2",
+      "batch": 3,
+      "status": "done",
+      "capability": "Agent 人格卡/系统提示人格段装配",
+      "gap": "完全无"
+    },
+    {
+      "id": 11,
+      "name": "安全守卫策略",
+      "dir": "插件/安全守卫策略",
+      "dsh_package": "packages/guard",
+      "priority": "P1",
+      "batch": 2,
+      "status": "done",
+      "capability": "命令/路径/URL 风险分级与拦截策略",
+      "gap": "完全无（审批.light 是交互层，guard 是策略层，互补）"
+    },
+    {
+      "id": 12,
+      "name": "上下文装配裁剪",
+      "dir": "插件/上下文装配裁剪",
+      "dsh_package": "packages/context",
+      "priority": "P1",
+      "batch": 2,
+      "status": "done",
+      "capability": "按预算装配/优先级裁剪（压缩前策略层）",
+      "gap": "完全无（压缩.light 是压缩动作，非策略）"
+    }
+  ],
+  "datasets": {
+    "error_dataset": {
+      "path": "G:\\dswork\\duan-light-merge\\光明×LightHarness_调试问题数据集.json",
+      "namespace": "LP-xxx",
+      "existing": "LM-001 ~ LM-041（41 条）",
+      "queue": "数据集/报错待归档.jsonl"
+    },
+    "code_dataset": {
+      "path": "数据集/代码数据集.jsonl",
+      "namespace": "LP-C-xxx",
+      "note": "全仓此前无代码类微调数据集，本批新建"
+    }
+  },
+  "feedback": {
+    "ledger": "语言缺陷反馈.md",
+    "aggregate": "lightharness/docs/功能对标/语言缺陷账.md",
+    "lane": "光明开发团队 A9 泳道",
+    "required_fields": [
+      "现象",
+      "最小复现",
+      "期望能力"
+    ]
+  }
+}

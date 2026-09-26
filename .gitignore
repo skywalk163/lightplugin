@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# 本地覆盖用，不进仓
+.env
+*.local
+
+# 归档脚本产物的临时目录（归档历史本身在 数据集/已归档/ 下，是要进仓的）
+_tmp/
