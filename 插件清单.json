@@ -294,7 +294,7 @@
       "dsh_package": "packages/experimental/browser-use-chrome-devtools-mcp",
       "priority": "P5",
       "batch": 6,
-      "status": "pending",
+      "status": "done",
       "capability": "同一动作序列 → CDP 协议消息序列",
       "gap": "完全无（devtools 0 命中）",
       "depends": [
@@ -308,7 +308,7 @@
       "dsh_package": "packages/experimental/browser-use-stagehand-native",
       "priority": "P5",
       "batch": 6,
-      "status": "pending",
+      "status": "done",
       "capability": "同一动作序列 → Stagehand 原生指令",
       "gap": "完全无（stagehand 0 命中）",
       "depends": [
@@ -322,7 +322,7 @@
       "dsh_package": "packages/experimental/computer-use-cua-driver-mcp",
       "priority": "P5",
       "batch": 6,
-      "status": "pending",
+      "status": "done",
       "capability": "桌面操作 → CUA MCP 调用计划",
       "gap": "完全无（cua 0 命中）",
       "depends": [
@@ -336,7 +336,7 @@
       "dsh_package": "packages/experimental/computer-use-cua-driver-native",
       "priority": "P5",
       "batch": 6,
-      "status": "pending",
+      "status": "done",
       "capability": "桌面操作 → CUA 原生指令序列",
       "gap": "完全无",
       "depends": [
