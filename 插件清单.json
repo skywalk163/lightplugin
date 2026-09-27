@@ -242,7 +242,7 @@
       "dsh_package": "packages/experimental/inspector",
       "priority": "P4",
       "batch": 5,
-      "status": "pending",
+      "status": "done",
       "capability": "运行时状态检视：快照字段抽取 + 差异高亮 + 导出",
       "gap": "基本无（仅 1 文件提及）",
       "depends": []
@@ -254,7 +254,7 @@
       "dsh_package": "packages/experimental/webworker-runtime",
       "priority": "P4",
       "batch": 5,
-      "status": "pending",
+      "status": "done",
       "capability": "WebWorker 消息循环 + 任务派发 + 生命周期",
       "gap": "基本无（仅 1 文件提及）",
       "depends": []
@@ -266,7 +266,7 @@
       "dsh_package": "packages/experimental/webworker-packer",
       "priority": "P4",
       "batch": 5,
-      "status": "pending",
+      "status": "done",
       "capability": "多模块打包为单 worker 脚本 + 依赖拓扑排序",
       "gap": "完全无",
       "depends": [
@@ -280,7 +280,7 @@
       "dsh_package": "packages/experimental/browser-use-playwright-mcp",
       "priority": "P4",
       "batch": 5,
-      "status": "pending",
+      "status": "done",
       "capability": "把 浏览器自动化 的动作序列翻译为 Playwright 调用计划",
       "gap": "完全无（playwright 0 命中）",
       "depends": [
