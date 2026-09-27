@@ -5,8 +5,11 @@
 **当前状态：60/60 插件复刻完成**（24 个前置 + 第 7/8/9 批各 12 个），60 个测试文件全绿，全程未改一行 `light-merge/src/`。
 **第 10 批（横向补深 + 集成）已完成**：6 个薄实现插件补深完毕，并新增 `集成/` 层验证 60 个插件可共存
 ——**100 个工具、工具名冲突 0 组、统一挂载 100/100、端到端冒烟 5/5**。
+**宿主运行时冒烟已完成**：100 个工具接进 lightharness **真 工具注册表**，走 `.执行()` 完整流水线
+（解析参数→prepare→Schema 校验→execute→finalize→统计）——**断言 12 通过 / 0 失败；合法派发 79 个，成功 77**。
+当场抓出并修掉 3 个「单测绿、直接调 execute 也绿」的插件 schema 缺陷，详见 `集成/README.md`。
 
-数据集：代码数据集 150 条；主报错数据集 67 条（其中 LP 系列 26 条）。
+数据集：代码数据集 155 条；主报错数据集 67 条（其中 LP 系列 26 条）。
 
 ## 仓库与远端
 
@@ -43,6 +46,8 @@ dsh 插件是 TypeScript 模块，挂真 Cordis 容器、跑在 Node 22+ 上；l
 | `集成/生成全量挂载.py` | 扫描全部插件，**静态抽取工具名、检测重名冲突**，生成统一挂载脚本与工具总表 |
 | `集成/全量挂载.light` | 生成物（勿手改）：逐插件隔离挂载 + 统一挂载 + 端到端冒烟 |
 | `集成/工具总表.json` | 生成物：每插件注册的工具清单 + 冲突表 + 注册总数 |
+| `集成/生成宿主冒烟.py` | 生成器：产出「走宿主**完整执行流水线**」的冒烟程序（插件增删后重跑） |
+| `集成/宿主冒烟.light` | 生成物（勿手改）：用 lightharness 真 `工具注册表.执行()` 验证 100 个工具可被正确调度 |
 
 ## 复刻一个插件的标准动作
 
@@ -63,6 +68,11 @@ python lightplugin/归档.py err           # 报错 → 主_dataset 光明×Ligh
 python light-merge/.venv/Scripts/python.exe lightplugin/集成/生成全量挂载.py
 python light-merge/.venv/Scripts/python.exe lightplugin/运行.py 集成/全量挂载.light
 #   判据：工具名冲突数 == 0 且 统一注册表最终工具数 == 各插件注册工具总数
+
+# 6. 宿主运行时冒烟（改了任何工具的 schema / 参数后必跑）
+python light-merge/.venv/Scripts/python.exe lightplugin/集成/生成宿主冒烟.py
+python light-merge/.venv/Scripts/python.exe lightplugin/运行.py 集成/宿主冒烟.light
+#   判据：断言失败 == 0 且 [E2] schema 不符 == 0
 ```
 
 ## 挂接契约（实读 `lightharness/src/工具.light`、`toolcordis.light` 得出）

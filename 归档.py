@@ -20,6 +20,7 @@ import datetime
 BASE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(BASE)
 PLUGINS = os.path.join(BASE, "插件")
+INTEG = os.path.join(BASE, "集成")          # 集成层源码（非插件，但同属光明代码样本）
 DATASET = os.path.join(BASE, "数据集")
 CODE_DS = os.path.join(DATASET, "代码数据集.jsonl")
 ERR_QUEUE = os.path.join(DATASET, "报错待归档.jsonl")
@@ -139,6 +140,41 @@ def cmd_code(dry_run=False):
                     "batch": info.get("batch", ""),
                     "dsh_package": dsh_pkg,
                     "tags": ["lightplugin", plugin_name, "dsh复刻"],
+                },
+            })
+
+    # ---- 集成层（集成/*.light）：不是插件，但同属光明代码样本，一并纳入 ----
+    if os.path.isdir(INTEG):
+        for fn in sorted(os.listdir(INTEG)):
+            if not fn.endswith(".light"):
+                continue
+            full = os.path.join(INTEG, fn)
+            rel = os.path.relpath(full, BASE).replace("\\", "/")
+            raw = _read_bytes(full)
+            sha = hashlib.sha256(raw).hexdigest()
+            if (rel, sha) in known:
+                skipped += 1
+                continue
+            text = raw.decode("utf-8", errors="replace")
+            lines = text.count("\n") + (0 if text.endswith("\n") or not text else 1)
+            new_records.append({
+                "id": "LP-C-%03d" % (len(existing) + len(new_records) + 1),
+                "instruction": "用光明语言编写 lightplugin 集成层冒烟：导入并挂载全部插件，"
+                               "走宿主工具注册表的执行流水线做端到端验证。",
+                "input": "集成层契约：从 工具 导入 工具注册表；插件逐个 挂载(注册表)；"
+                         "用 注册表.执行(名字, 参数) 走「解析参数→prepare→Schema 校验→execute→finalize→统计」完整流水线。",
+                "output": text,
+                "meta": {
+                    "plugin": "集成",
+                    "lang": "light",
+                    "role": "impl",
+                    "source": rel,
+                    "sha256": sha,
+                    "lines": lines,
+                    "priority": "",
+                    "batch": "",
+                    "dsh_package": "",
+                    "tags": ["lightplugin", "集成", "宿主冒烟"],
                 },
             })
 
