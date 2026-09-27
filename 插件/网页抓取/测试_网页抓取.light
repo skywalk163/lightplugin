@@ -22,9 +22,9 @@
 
 # ---- 固定样本：含 script / style / 实体 / 链接 ----
 段落 造样本():
-  # 注：样本内的 CSS 一律避开字面花括号 —— 光明字符串支持 {变量} 插值（已验证），
-  #     写字面 {} 会被当插值求值而 NameError。详见 ../../语言缺陷反馈.md LP-D-001。
-  设 s 为 "<html><head><title>光明屋的猫</title><style>body-color-red</style></head>"
+  # LP-D-001 已修复：字面花括号用 \{ \} 转义即可归一为单括号（不再残留反斜杠）。
+  # 下面样本里的 style 块写成真实 CSS，证明绕法（避开字面花括号）可删。
+  设 s 为 "<html><head><title>光明屋的猫</title><style>body\{color:red\}</style></head>"
   设 s 为 s + "<body><script>var 坏 = 1;</script>"
   设 s 为 s + "<h1>标题甲</h1><p>第一段 &amp; 第二段</p>"
   设 s 为 s + "<a href=\"x\">链接甲</a><a href=\"y\">链接乙</a></body></html>"
@@ -57,7 +57,7 @@
   设 删后 为 删块(样本, "script")
   断言不含(删后, "var 坏", "script 内容应被删")
   设 删双 为 删块(删块(样本, "script"), "style")
-  断言不含(删双, "body-color-red", "style 内容应被删")
+  断言不含(删双, "color:red", "style 块应被删")
 
   # ---- 5. 实体解码 ----
   断言相等(解码实体("&amp;"), "&", "amp 解码")
