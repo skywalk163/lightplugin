@@ -342,6 +342,420 @@
       "depends": [
         "桌面屏幕操作"
       ]
+    },
+    {
+      "id": 25,
+      "name": "存储抽象",
+      "dir": "插件/存储抽象",
+      "dsh_package": "packages/storage",
+      "priority": "P5",
+      "batch": 7,
+      "status": "done",
+      "capability": "键值/对象存储抽象：命名空间 + 读写删 + 多后端适配（内存/文件）",
+      "gap": "完全无（存储 0 命中）；lightharness 无存储抽象层"
+    },
+    {
+      "id": 26,
+      "name": "MCP桥接",
+      "dir": "插件/MCP桥接",
+      "dsh_package": "packages/mcp",
+      "priority": "P5",
+      "batch": 7,
+      "status": "done",
+      "capability": "Model Context Protocol 工具桥接：把远端 MCP 工具清单拉成本地可调工具",
+      "gap": "完全无（mcp 0 命中）；lightharness 无 MCP 客户端"
+    },
+    {
+      "id": 27,
+      "name": "子代理派发",
+      "dir": "插件/子代理派发",
+      "dsh_package": "packages/subagent",
+      "priority": "P5",
+      "batch": 7,
+      "status": "done",
+      "capability": "子代理任务派发：派单/结果收集/失败重试/聚合",
+      "gap": "完全无（subagent 0 命中）；团队工具只做静态编排，无派发运行时"
+    },
+    {
+      "id": 28,
+      "name": "工作流编排",
+      "dir": "插件/工作流编排",
+      "dsh_package": "packages/workflow",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "工作流步骤编排：有向步骤图 + 条件分支 + 串行/并行执行 + 状态",
+      "gap": "完全无（workflow 0 命中）"
+    },
+    {
+      "id": 29,
+      "name": "接口服务",
+      "dir": "插件/接口服务",
+      "dsh_package": "packages/api",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "内部 REST 接口服务：路由注册 + 请求分发 + 响应封装",
+      "gap": "完全无（api 0 命中）；lightharness 无对外 HTTP 服务注册"
+    },
+    {
+      "id": 30,
+      "name": "终端会话",
+      "dir": "插件/终端会话",
+      "dsh_package": "packages/terminal",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "终端会话交互：开会话/写输入/读输出/关闭，pty 状态机",
+      "gap": "完全无（terminal 0 命中）；工具_bash 只做一次性执行，无会话"
+    },
+    {
+      "id": 31,
+      "name": "SSH远程执行",
+      "dir": "插件/SSH远程执行",
+      "dsh_package": "packages/ssh",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "SSH 远程执行：连接配置 + 命令下发 + 结果回收（注入式 transport）",
+      "gap": "完全无（ssh 0 命中）"
+    },
+    {
+      "id": 32,
+      "name": "钩子总线",
+      "dir": "插件/钩子总线",
+      "dsh_package": "packages/hooks",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "钩子/事件总线：注册监听 + 事件派发 + 优先级 + 拦截",
+      "gap": "完全无（hooks 0 命中）；lightharness 无通用事件总线"
+    },
+    {
+      "id": 33,
+      "name": "设置持久化",
+      "dir": "插件/设置持久化",
+      "dsh_package": "packages/settings",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "设置项持久化：读写/默认值/作用域（用户/会话/插件），注入式存储后端",
+      "gap": "完全无（settings 0 命中）"
+    },
+    {
+      "id": 34,
+      "name": "沙箱隔离",
+      "dir": "插件/沙箱隔离",
+      "dsh_package": "packages/sandbox",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "沙箱隔离策略：命令/路径/网络风险分级 + 白名单/黑名单裁决",
+      "gap": "完全无（sandbox 0 命中）；安全守卫策略只做风险分级，无隔离裁决"
+    },
+    {
+      "id": 35,
+      "name": "工作区管理",
+      "dir": "插件/工作区管理",
+      "dsh_package": "packages/workspace",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "工作区/根目录管理：多根注册 + 解析相对路径到根 + 根切换",
+      "gap": "完全无（workspace 0 命中）；工具_路径安全只做单根校验"
+    },
+    {
+      "id": 36,
+      "name": "文件系统抽象",
+      "dir": "插件/文件系统抽象",
+      "dsh_package": "packages/fs",
+      "priority": "P6",
+      "batch": 7,
+      "status": "done",
+      "capability": "文件系统抽象：路径规范化/拼接/存在性 + 变更事件订阅表（不重造读写）",
+      "gap": "基本无；工具_读文件/写文件/搜索文件只做单文件操作，缺路径层与事件订阅"
+    },
+    {
+      "id": 37,
+      "name": "附件数据层",
+      "dir": "插件/附件数据层",
+      "dsh_package": "packages/attachment",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "附件数据层：上传/下载/列举 + 格式归一（文本/二进制），注入式存储后端",
+      "gap": "完全无；附件准入.light 只做准入判定，本插件做数据搬运与格式归一"
+    },
+    {
+      "id": 38,
+      "name": "会话管理",
+      "dir": "插件/会话管理",
+      "dsh_package": "packages/session",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "会话生命周期：创建/挂起/恢复/销毁 + 上下文槽 + 当前会话切换",
+      "gap": "基本无（会话 0 命中）；lightharness 无会话层"
+    },
+    {
+      "id": 39,
+      "name": "会话查询",
+      "dir": "插件/会话查询",
+      "dsh_package": "packages/session-query",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "会话检索：按条件过滤/分页/抽取字段，注入式会话源",
+      "depends": [
+        "会话管理"
+      ],
+      "gap": "完全无（session-query 0 命中）"
+    },
+    {
+      "id": 40,
+      "name": "shell环境层",
+      "dir": "插件/shell环境层",
+      "dsh_package": "packages/shell",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "shell 环境层：环境变量读写/工作目录/命令解析分片，注入式执行器",
+      "gap": "基本无；工具_bash 只做一次性执行，缺变量/工作目录/解析层"
+    },
+    {
+      "id": 41,
+      "name": "扩展加载",
+      "dir": "插件/扩展加载",
+      "dsh_package": "packages/extensions",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "扩展加载运行时：清单解析/启用禁用/加载顺序/冲突检测",
+      "gap": "完全无（extensions 0 命中）"
+    },
+    {
+      "id": 42,
+      "name": "协议ACP",
+      "dir": "插件/协议ACP",
+      "dsh_package": "packages/acp",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "Agent Client Protocol 消息构造：请求/响应/事件/通知 结构装配与校验",
+      "gap": "完全无（acp 0 命中）"
+    },
+    {
+      "id": 43,
+      "name": "运行时诊断",
+      "dir": "插件/运行时诊断",
+      "dsh_package": "packages/runtime-diagnostics",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "运行时诊断采集：指标快照/异常捕获上报/健康检查，注入式采集器",
+      "gap": "完全无（runtime-diagnostics 0 命中）"
+    },
+    {
+      "id": 44,
+      "name": "子进程管理",
+      "dir": "插件/子进程管理",
+      "dsh_package": "packages/subprocess",
+      "priority": "P6",
+      "batch": 8,
+      "status": "done",
+      "capability": "子进程生命周期：启动/管道读写/等待退出/超时，注入式 transport",
+      "gap": "基本无；与工具_bash/shell 互补，专注进程与管道层"
+    },
+    {
+      "id": 45,
+      "name": "启动编排",
+      "dir": "插件/启动编排",
+      "dsh_package": "packages/boot",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "启动序列编排：插件/服务加载顺序 + 依赖拓扑 + 失败短路",
+      "gap": "完全无（boot 0 命中）"
+    },
+    {
+      "id": 46,
+      "name": "工具代理团队",
+      "dir": "插件/工具代理团队",
+      "dsh_package": "packages/experimental/tool-agent-team",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "工具代理团队运行时：把工具分派给子代理槽 + 结果回收",
+      "gap": "完全无（tool-agent-team 0 命中）；团队工具.light 只做静态编排",
+      "depends": [
+        "子代理派发"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "模型适配器",
+      "dir": "插件/模型适配器",
+      "dsh_package": "packages/llm",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "模型适配器：多后端路由 + 请求构造/响应解析，注入式传输(模型名,消息)->回复",
+      "gap": "完全无（llm 0 命中）；lightharness 无模型请求层"
+    },
+    {
+      "id": 48,
+      "name": "代理团队画像",
+      "dir": "插件/代理团队画像",
+      "dsh_package": "packages/experimental/agent-team-profile",
+      "priority": "P7",
+      "batch": 8,
+      "status": "done",
+      "capability": "团队画像/角色装配：角色定义 + 能力声明 + 装配校验",
+      "gap": "完全无（agent-team-profile 0 命中）",
+      "depends": [
+        "工具代理团队"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "打包分发",
+      "dir": "插件/打包分发",
+      "dsh_package": "packages/bundle",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "打包分发：产物清单合并/依赖收集/版本登记，注入式打包器",
+      "gap": "完全无（bundle 0 命中）"
+    },
+    {
+      "id": 50,
+      "name": "客户端状态",
+      "dir": "插件/客户端状态",
+      "dsh_package": "packages/client",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "客户端状态机：连接态/会话视图/事件队列，注入式事件源",
+      "gap": "完全无（client 0 命中）"
+    },
+    {
+      "id": 51,
+      "name": "运行时PTC",
+      "dir": "插件/运行时PTC",
+      "dsh_package": "packages/ptc-runtime",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "运行时执行上下文：任务槽登记/资源账/生命周期，注入式执行器",
+      "gap": "完全无（ptc-runtime 0 命中）"
+    },
+    {
+      "id": 52,
+      "name": "运行时Python",
+      "dir": "插件/运行时Python",
+      "dsh_package": "packages/experimental/ptc-runtime-python",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "Python 运行时桥：脚本装配/命令构造/结果解析，注入式执行器",
+      "gap": "完全无（ptc-runtime-python 0 命中）"
+    },
+    {
+      "id": 53,
+      "name": "开发工具包",
+      "dir": "插件/开发工具包",
+      "dsh_package": "packages/sdk",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "SDK 门面：能力发现 + 调用封装 + 结果归一，注入式宿主",
+      "gap": "完全无（sdk 0 命中）"
+    },
+    {
+      "id": 54,
+      "name": "溢出缓冲",
+      "dir": "插件/溢出缓冲",
+      "dsh_package": "packages/spill",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "大输出溢出缓冲：阈值判定/分片/落盘标记，注入式写入器",
+      "gap": "完全无（spill 0 命中）"
+    },
+    {
+      "id": 55,
+      "name": "测试支撑",
+      "dir": "插件/测试支撑",
+      "dsh_package": "packages/test-support",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "测试夹具：断言集/桩登记/用例表与通过率统计（供插件自测复用）",
+      "gap": "完全无（test-support 0 命中）"
+    },
+    {
+      "id": 56,
+      "name": "类型运行时",
+      "dir": "插件/类型运行时",
+      "dsh_package": "packages/typert",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "类型运行时：值类型判定/结构校验/字段转换",
+      "gap": "完全无（typert 0 命中）"
+    },
+    {
+      "id": 57,
+      "name": "通用工具",
+      "dir": "插件/通用工具",
+      "dsh_package": "packages/util",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "通用工具集：深拷贝/字典合并/去重/扁平化/分块 等纯逻辑",
+      "gap": "完全无（util 0 命中）"
+    },
+    {
+      "id": 58,
+      "name": "代理团队",
+      "dir": "插件/代理团队",
+      "dsh_package": "packages/experimental/agent-team",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "多代理团队运行时：成员注册/任务分派/结果汇总",
+      "gap": "完全无（agent-team 0 命中）；团队工具.light 只做静态编排，本插件做运行时",
+      "depends": [
+        "子代理派发"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "浏览器运行时",
+      "dir": "插件/浏览器运行时",
+      "dsh_package": "packages/experimental/browser-use-runtime",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "浏览器会话运行时：上下文/页面登记/动作队列与执行，注入式驱动",
+      "gap": "完全无（browser-use-runtime 0 命中）；浏览器自动化 是动作层，本插件是会话运行时",
+      "depends": [
+        "浏览器自动化"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "团队界面",
+      "dir": "插件/团队界面",
+      "dsh_package": "packages/experimental/client-ui-agent-team",
+      "priority": "P8",
+      "batch": 9,
+      "status": "done",
+      "capability": "团队界面状态：成员面板/消息流装配/选中态，注入式数据源",
+      "gap": "完全无（client-ui-agent-team 0 命中）",
+      "depends": [
+        "代理团队"
+      ]
     }
   ],
   "datasets": {
