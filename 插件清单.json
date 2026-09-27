@@ -182,6 +182,166 @@
       "status": "done",
       "capability": "按预算装配/优先级裁剪（压缩前策略层）",
       "gap": "完全无（压缩.light 是压缩动作，非策略）"
+    },
+    {
+      "id": 13,
+      "name": "语音转文字",
+      "dir": "插件/语音转文字",
+      "dsh_package": "packages/experimental/speech-to-text",
+      "priority": "P3",
+      "batch": 4,
+      "status": "done",
+      "capability": "音频 → 文本（ASR），含 API 版与 SenseVoice 版三包合一",
+      "gap": "完全无（语音 0 命中）",
+      "depends": [
+        "异步作业轮询"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "语音输入前端",
+      "dir": "插件/语音输入前端",
+      "dsh_package": "packages/experimental/client-ui-voice-input",
+      "priority": "P3",
+      "batch": 4,
+      "status": "done",
+      "capability": "录音状态机 + 静音/音量判定 + 分片上传触发",
+      "gap": "完全无",
+      "depends": []
+    },
+    {
+      "id": 15,
+      "name": "语音输入打包",
+      "dir": "插件/语音输入打包",
+      "dsh_package": "packages/experimental/voice-input-bundle",
+      "priority": "P3",
+      "batch": 4,
+      "status": "done",
+      "capability": "音频分片打包为单次请求负载 + 元信息装配",
+      "gap": "完全无",
+      "depends": [
+        "语音输入前端"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "自动审查",
+      "dir": "插件/自动审查",
+      "dsh_package": "packages/experimental/auto-review",
+      "priority": "P3",
+      "batch": 4,
+      "status": "done",
+      "capability": "改动差异 → 结构化审查意见（分级 + 定位）",
+      "gap": "完全无（审查 0 命中）",
+      "depends": []
+    },
+    {
+      "id": 17,
+      "name": "运行检视器",
+      "dir": "插件/运行检视器",
+      "dsh_package": "packages/experimental/inspector",
+      "priority": "P4",
+      "batch": 5,
+      "status": "pending",
+      "capability": "运行时状态检视：快照字段抽取 + 差异高亮 + 导出",
+      "gap": "基本无（仅 1 文件提及）",
+      "depends": []
+    },
+    {
+      "id": 18,
+      "name": "工作线程运行时",
+      "dir": "插件/工作线程运行时",
+      "dsh_package": "packages/experimental/webworker-runtime",
+      "priority": "P4",
+      "batch": 5,
+      "status": "pending",
+      "capability": "WebWorker 消息循环 + 任务派发 + 生命周期",
+      "gap": "基本无（仅 1 文件提及）",
+      "depends": []
+    },
+    {
+      "id": 19,
+      "name": "工作线程打包",
+      "dir": "插件/工作线程打包",
+      "dsh_package": "packages/experimental/webworker-packer",
+      "priority": "P4",
+      "batch": 5,
+      "status": "pending",
+      "capability": "多模块打包为单 worker 脚本 + 依赖拓扑排序",
+      "gap": "完全无",
+      "depends": [
+        "工作线程运行时"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "浏览器驱动Playwright",
+      "dir": "插件/浏览器驱动Playwright",
+      "dsh_package": "packages/experimental/browser-use-playwright-mcp",
+      "priority": "P4",
+      "batch": 5,
+      "status": "pending",
+      "capability": "把 浏览器自动化 的动作序列翻译为 Playwright 调用计划",
+      "gap": "完全无（playwright 0 命中）",
+      "depends": [
+        "浏览器自动化"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "浏览器驱动DevTools",
+      "dir": "插件/浏览器驱动DevTools",
+      "dsh_package": "packages/experimental/browser-use-chrome-devtools-mcp",
+      "priority": "P5",
+      "batch": 6,
+      "status": "pending",
+      "capability": "同一动作序列 → CDP 协议消息序列",
+      "gap": "完全无（devtools 0 命中）",
+      "depends": [
+        "浏览器自动化"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "浏览器驱动Stagehand",
+      "dir": "插件/浏览器驱动Stagehand",
+      "dsh_package": "packages/experimental/browser-use-stagehand-native",
+      "priority": "P5",
+      "batch": 6,
+      "status": "pending",
+      "capability": "同一动作序列 → Stagehand 原生指令",
+      "gap": "完全无（stagehand 0 命中）",
+      "depends": [
+        "浏览器自动化"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "桌面驱动CUA协议",
+      "dir": "插件/桌面驱动CUA协议",
+      "dsh_package": "packages/experimental/computer-use-cua-driver-mcp",
+      "priority": "P5",
+      "batch": 6,
+      "status": "pending",
+      "capability": "桌面操作 → CUA MCP 调用计划",
+      "gap": "完全无（cua 0 命中）",
+      "depends": [
+        "桌面屏幕操作"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "桌面驱动CUA原生",
+      "dir": "插件/桌面驱动CUA原生",
+      "dsh_package": "packages/experimental/computer-use-cua-driver-native",
+      "priority": "P5",
+      "batch": 6,
+      "status": "pending",
+      "capability": "桌面操作 → CUA 原生指令序列",
+      "gap": "完全无",
+      "depends": [
+        "桌面屏幕操作"
+      ]
     }
   ],
   "datasets": {
