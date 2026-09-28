@@ -197,7 +197,9 @@
     设 描述 为 ""
     如果 条目.包含("description") == 真:
       描述 为 条目["description"]
-    设 模式 为 ["type": "object", "properties": [], "required": []]
+    # 2026-09-28 第 11 批：原写 `"properties": []`（空**列表**，非映射），
+    # 宿主按 schema 造参会炸在 字典键列表(list)（见 语言缺陷反馈 LP-D-017）。无字段应为空映射。
+    设 模式 为 ["type": "object", "properties": {}, "required": []]
     如果 条目.包含("schema") == 真:
       模式 为 条目["schema"]
     设 处理 为 条目["handler"]

@@ -58,6 +58,30 @@ def 静态工具表(清单):
     return 表
 
 
+# 静态形状体检（LP-D-017 防线）：光明里**空列表** `[]` 与**空映射** `{}` 写法不同，
+# 把 schema 的 properties 写成 `[]` 是「注册成功、直接调 execute 也成功」的隐形缺陷——
+# 只有宿主按 schema 造参（遍历 字典键列表(properties)）时才炸在 stdlib 内部。
+# 注意：光明的**字典字面量**也用方括号（`["键": 值]`），所以只判空的 `[]`，不能判所有 `[`。
+EMPTY_PROPS_RE = re.compile(u'"properties"\\s*:\\s*\\[\\s*\\]')
+
+
+def 查空属性表(清单):
+    """返回 {插件: [行号, ...]}，凡把 properties 写成空列表的地方。"""
+    问题 = {}
+    for name, d in 清单:
+        text = io.open(os.path.join(d, name + ".light"), encoding="utf-8",
+                       errors="replace").read()
+        行号们 = []
+        for i, line in enumerate(text.splitlines(), 1):
+            if line.lstrip().startswith(u"#"):     # 注释里引用旧写法不算问题
+                continue
+            if EMPTY_PROPS_RE.search(line):
+                行号们.append(i)
+        if 行号们:
+            问题[name] = 行号们
+    return 问题
+
+
 def 查冲突(表):
     """工具名 -> [插件...]，只返回出现 >1 次的。"""
     归属 = {}
@@ -226,6 +250,13 @@ def main():
         return 1
     表 = 静态工具表(清单)
     冲突 = 查冲突(表)
+    空属性 = 查空属性表(清单)
+    if 空属性:
+        for name in sorted(空属性):
+            print(u"    [schema形状] %s.light 第 %s 行：properties 写成了空列表 []，"
+                  u"应为空映射 {}（LP-D-017）" % (name, u", ".join(str(i) for i in 空属性[name])))
+    else:
+        print(u"    [schema形状] 无 properties 写成空列表的插件")
 
     if "--只生成清单" not in argv:
         text = 生成_light(清单)
@@ -240,6 +271,8 @@ def main():
                              "tool_count": len(表.get(n, []))}) for n, _d in 清单),
         "tool_name_conflicts": 冲突,
         "conflict_count": len(冲突),
+        "empty_properties_list": 空属性,
+        "empty_properties_list_count": len(空属性),
         "total_tools_registered": sum(len(v) for v in 表.values()),
     }
     io.open(OUT_JSON, "w", encoding="utf-8", newline="").write(

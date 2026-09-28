@@ -756,6 +756,160 @@
       "depends": [
         "代理团队"
       ]
+    },
+    {
+      "id": 61,
+      "name": "待办清单",
+      "dir": "插件/待办清单",
+      "dsh_package": "packages/todo",
+      "priority": "P2",
+      "batch": 11,
+      "status": "done",
+      "capability": "平列表待办：添加/完成/列出/删除，带优先级",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 62,
+      "name": "计划步骤",
+      "dir": "插件/计划步骤",
+      "dsh_package": "packages/plan",
+      "priority": "P2",
+      "batch": 11,
+      "status": "done",
+      "capability": "步骤状态机：创建/开始/完成/阻塞/列出",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 63,
+      "name": "目标管理",
+      "dir": "插件/目标管理",
+      "dsh_package": "packages/goal",
+      "priority": "P3",
+      "batch": 11,
+      "status": "done",
+      "capability": "树状目标：创建（可挂父）/推进进度0-100/列出",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 64,
+      "name": "定时提醒",
+      "dir": "插件/定时提醒",
+      "dsh_package": "packages/schedule",
+      "priority": "P3",
+      "batch": 11,
+      "status": "done",
+      "capability": "注入式时钟：注册/取消/列出/轮询到期",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 65,
+      "name": "预设管理",
+      "dir": "插件/预设管理",
+      "dsh_package": "packages/preset",
+      "priority": "P4",
+      "batch": 11,
+      "status": "done",
+      "capability": "命名预设槽：保存（含覆盖）/应用/列出/删除",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 66,
+      "name": "上下文压缩",
+      "dir": "插件/上下文压缩",
+      "dsh_package": "packages/compaction",
+      "priority": "P4",
+      "batch": 11,
+      "status": "done",
+      "capability": "压缩动作：预算评估/选保留块/生成摘要（注入式 token 计量）",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 67,
+      "name": "凭据管理",
+      "dir": "插件/凭据管理",
+      "dsh_package": "packages/credentials",
+      "priority": "P4",
+      "batch": 11,
+      "status": "done",
+      "capability": "注入式加密后端：存入/读取/删除/列出（不吐明文）",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 68,
+      "name": "反馈通道",
+      "dir": "插件/反馈通道",
+      "dsh_package": "packages/feedback",
+      "priority": "P5",
+      "batch": 11,
+      "status": "done",
+      "capability": "反馈队列：提交/列出/标记已处理/按类型筛选",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 69,
+      "name": "交付呈现",
+      "dir": "插件/交付呈现",
+      "dsh_package": "packages/deliverables",
+      "priority": "P5",
+      "batch": 11,
+      "status": "done",
+      "capability": "交付物台账：登记/列出/标记完成/关联路径",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 70,
+      "name": "语言服务器桥",
+      "dir": "插件/语言服务器桥",
+      "dsh_package": "packages/lsp",
+      "priority": "P6",
+      "batch": 11,
+      "status": "done",
+      "capability": "注入式 LSP 传输门面：初始化/发请求/收响应",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 71,
+      "name": "网络钩子",
+      "dir": "插件/网络钩子",
+      "dsh_package": "packages/webhook",
+      "priority": "P6",
+      "batch": 11,
+      "status": "done",
+      "capability": "外部钩子登记与派发：注册/触发/列出/删除",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 72,
+      "name": "交互询问",
+      "dir": "插件/交互询问",
+      "dsh_package": "packages/interaction",
+      "priority": "P5",
+      "batch": 11,
+      "status": "done",
+      "capability": "双向问答队列：提问/回答/待答列出/取出回答",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 73,
+      "name": "核心工具桥",
+      "dir": "插件/核心工具桥",
+      "dsh_package": "packages/core",
+      "priority": "P7",
+      "batch": 11,
+      "status": "done",
+      "capability": "门面：查时间/查工作目录/查版本/查退出码（全注入式）",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 74,
+      "name": "宿主桥接",
+      "dir": "插件/宿主桥接",
+      "dsh_package": "packages/host",
+      "priority": "P7",
+      "batch": 11,
+      "status": "done",
+      "capability": "门面：宿主名/平台/工作区根/能力声明（全注入式）",
+      "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
     }
   ],
   "datasets": {
