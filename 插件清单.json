@@ -679,7 +679,7 @@
       "priority": "P8",
       "batch": 9,
       "status": "done",
-      "capability": "大输出溢出缓冲：阈值判定/分片/落盘标记，注入式写入器",
+      "capability": "大输出溢出缓冲：阈值判定/分片/落盘标记，注入式写入器（R101 增：spill-policy 共享预算策略层）",
       "gap": "完全无（spill 0 命中）"
     },
     {
@@ -910,6 +910,20 @@
       "status": "done",
       "capability": "门面：宿主名/平台/工作区根/能力声明（全注入式）",
       "gap": "dsh 有真实包；lightharness 侧仅内部实现，未注册成工具 → 本批补门面"
+    },
+    {
+      "id": 75,
+      "name": "语音远端控制器",
+      "dir": "插件/语音远端控制器",
+      "dsh_package": "packages/experimental/api-speech-to-text",
+      "priority": "P0",
+      "batch": 12,
+      "status": "done",
+      "capability": "Web Remote 服务端语音控制器：入站校验（canonical base64/字节上限/WAV 规范）/ 限流 / 错误码包装，经识别器契约对接 #13 转写",
+      "gap": "清单漏项（74 个全 done 时唯独漏了本包）；R101 增补",
+      "depends": [
+        "语音转文字"
+      ]
     }
   ],
   "datasets": {
