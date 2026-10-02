@@ -1,7 +1,7 @@
 {
   "repo": "lightplugin",
   "generated_by": "lightplugin/集成/生成全量挂载.py",
-  "plugin_count": 74,
+  "plugin_count": 75,
   "plugins": {
     "MCP桥接": {
       "tools": [
@@ -463,6 +463,13 @@
       ],
       "tool_count": 1
     },
+    "语音远端控制器": {
+      "tools": [
+        "语音目录",
+        "语音转写"
+      ],
+      "tool_count": 2
+    },
     "身份人格装配": {
       "tools": [
         "人格列表",
@@ -532,5 +539,5 @@
   "conflict_count": 0,
   "empty_properties_list": {},
   "empty_properties_list_count": 0,
-  "total_tools_registered": 154
+  "total_tools_registered": 156
 }
